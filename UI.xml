@@ -8,8 +8,6 @@
 
 <Panel id="intiativeList" rectAlignment="LowerCenter" offsetXY="-250 0" width="220" height="60" color="#FFFFFF">
   <Button id="initiativeListButton" onClick="toggleInitiativeList" colors="#1E90FFFF #FFFFFF #87CEEBFF" fontSize="18" text="Initiative List"/>
-    <!--Show current list of intiative sorted by highesest to lowest-->
-    <!--plan to add delete button so it can delete-->
 </Panel>
 
 <Panel id="CooldownAdder" rectAlignment="LowerCenter" offsetXY="250 0" width="220" height="60" color="#FFFFFF">
@@ -22,17 +20,21 @@
   <Text id="TurnCounterText" text="Turn: " color="#000000" fontSize="18" alignment="MiddleCenter"/>
 </Panel>
 
-<Panel id="InitiativeCounter" rectAlignment="MiddleRight" offsetXY="0 -63" width="250" height="60" color="#FFFFFF">
-  <Text id="IntiativeCounterText" text="Intiative Number: " color="#000000" fontSize="18" alignment="MiddleCenter"/>
+<Panel id="InitiativeCounterControls" rectAlignment="MiddleRight" offsetXY="0 -63" width="300" height="60" color="#FFFFFF">
+  <HorizontalLayout padding="10" spacing="5">
+    <Button id="decreaseInitiativeButton" onClick="decreaseInitiative" text="-" fontSize="18" colors="#FF0000FF #FFFFFFFF #FF0000FF"/>
+    <Button id="increaseInitiativeButton" onClick="increaseInitiative" text="+" fontSize="18" colors="#00FF00FF #FFFFFFFF #00FF00FF"/>
+    <Text id="InitiativeCounterText" text="Initiative Number: " color="#000000" fontSize="18"/>
+  </HorizontalLayout>
 </Panel>
 
 <Panel id="TurnUserLabel" rectAlignment="MiddleRight" offsetXY="0 -126" width="300" height="60" color="#FFFFFF">
   <Text id="TurnUserText" text="Name: " color="#000000" fontSize="18" alignment="MiddleCenter"/>
 </Panel>
 
-<Panel id="CoolDownTracker" rectAlignment="MiddleRight" offsetXY="0 -189" width="200" height="50" color="#FFFFFF">
+<Panel id="CoolDownTracker" rectAlignment="MiddleRight" offsetXY="0 -389" width="300" height="200" color="#FFFFFF">
     <VerticalLayout padding="10" spacing="5">
-        <Text text="Cooldown Tracker:" color="#000000" fontSize="18"/>
+        <Text id="cooldownTrackerText" text="Cooldown Tracker:" color="#000000" fontSize="12"/>
     </VerticalLayout>
 </Panel>
 
@@ -42,39 +44,32 @@
 <Panel id="initiativeMenu" rectAlignment="LowerCenter" offsetXY="40 80" active="false" width="300" height="400" color="#FFFFFF">
   <VerticalLayout padding="10" spacing="5">
     <Text text="Initiative Register" color="#000000" fontSize="18"/>
-    <InputField id="playerNameInput" placeholder="Player Name" fontSize="18"/>
-    <InputField id="initiativeInput" placeholder="Initiative" fontSize="18"/>
-    <Button id="registerPlayerButton" onClick="registerPlayer" text="Register Player" fontSize="18"/>
-    <Button id="enemyInitiativeButton" onClick="openEnemyInitiaveMenu" text="Enemy Initiative Menu >" fontSize="18"/>
+    <InputField id="playerNameInput" placeholder="Character Name" fontSize="18" onValueChanged="handleInputChange"/>
+    <InputField id="initiativeInput" placeholder="Initiative" fontSize="18" onValueChanged="handleInputChange"/>
+    <Button id="registerPlayerButton" onClick="registerPlayer" text="Register" fontSize="18"/>
     <!-- Close button for the menu -->
     <Button id="closeMenuButton" onClick="closeInitiativeMenu" text="Close" fontSize="18" color="#FF0000"/>
   </VerticalLayout>
 </Panel>
 
-<Panel id="enemyInitiativeMenu" rectAlignment="LowerCenter" offsetXY="330 80" active="false" width="300" height="400" color="#FFFFFF">
-  <VerticalLayout padding="10" spacing="5">
-    <Text text="Enemy Initiative Register" color="#000000" fontSize="18"/>
-    <InputField id="enemyNameInput" placeholder="Enemy Type" fontSize="18"/>
-    <InputField id="enemyinitiativeInput" placeholder="Initiative" fontSize="18"/>
-    <Button id="registerEnemyButton" onClick="registerEnemy" text="Register Enemy" fontSize="18"/>
-    <!-- Close button for the menu -->
-    <Button id="closeMenuButton2" onClick="closeInitiativeMenu2" text="Close" fontSize="18" color="#FF0000"/>
+
+<Panel id="initiativeListMenu" rectAlignment="LowerCenter" offsetXY="-250 80" active="false" width="300" height="400" color="#FFFFFF">
+  <VerticalLayout id="initiativeListContent" padding="10" spacing="5">
+    <Text id="initiativeListTitle" text="Initiative List" color="#000000" fontSize="18"/>
+    <!--  initiatives will be listed here -->
   </VerticalLayout>
 </Panel>
 
-<Panel id="initiativeListMenu" rectAlignment="LowerCenter" offsetXY="-250 80" active="false" width="300" height="400" color="#FFFFFF">
-  <VerticalLayout padding="10" spacing="5">
-    <Text text="Initiative List" color="#000000" fontSize="18"/>
-  </VerticalLayout>
-</Panel>
+
 
 <Panel id="AddCoolDownMenu" rectAlignment="LowerCenter" offsetXY="330 80" active="false" width="300" height="400" color="#FFFFFF">
   <VerticalLayout padding="10" spacing="5">
-    <Text text="Add Cooldown To Current User" color="#000000" fontSize="18"/>
-     <InputField id="cooldownName" placeholder="Ability/Status" fontSize="18"/>
-     <InputField id="cooldownAmount" placeholder="Turns" fontSize="18"/>
+    <Text text="Add Cooldown" color="#000000" fontSize="18"/>
+     <InputField id="cooldownName" placeholder="Ability/Status" fontSize="18" onValueChanged="handleInputChangeCooldown"/>
+     <InputField id="cooldownAmount" placeholder="Turns" fontSize="18" onValueChanged="handleInputChangeCooldown"/>
      <Button id="registerCooldown" onClick="addCooldown" text="Add Cooldown" fontSize="18"/>
     <!-- Close button for the menu -->
     <Button id="closeMenuButton3" onClick="closeInitiativeMenu3" text="Close" fontSize="18" color="#FF0000"/>
   </VerticalLayout>
 </Panel>
+
